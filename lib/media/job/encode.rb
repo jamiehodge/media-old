@@ -1,5 +1,5 @@
 require_relative "../service/ffmpeg"
-require_relative "../model/arguments"
+require_relative "../service/arguments"
 require_relative "queueable"
 
 module Media
@@ -10,7 +10,7 @@ module Media
       def initialize(args)
         @input   = args["input"]
         @output  = args["output"]
-        @options = Model::Arguments.new(args["options"])
+        @options = Service::Arguments.new(args["options"])
         @client  = args["client"] || FFMPEG
       end
 

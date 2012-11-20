@@ -1,5 +1,5 @@
 module Media
-  module Model
+  module Service
     class Arguments
   
       attr_reader :args
