@@ -7,8 +7,8 @@ module Media
       def initialize(args)
         args = defaults.merge(args)
         
-        @model = args[:model]
         @user  = args[:user]
+        @model = args[:model] || @user.send(resource)
         @view  = args[:view]
         @arguments = args[:arguments]
       end
@@ -71,11 +71,11 @@ module Media
       end
       
       def authorized_fields
-        user.authorized_fields(resource.to_sym)
+        user.authorized_fields(resource)
       end
       
       def resource
-        self.class.name.split("::").first
+        self.class.name.split("::").last.downcase.to_sym
       end
       
       def defaults
